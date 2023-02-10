@@ -1,0 +1,27 @@
+project:
+  kafka:
+    topic:
+      partitions: 3
+      replicas: 3
+spring:
+  jackson:
+    date-format: "yyyy-MM-dd HH:mm:ss"
+  kafka:
+    admin:
+      bootstrap:
+        servers: localhost:9094,localhost:9095,localhost:9096
+    consumer:
+      bootstrap-servers: localhost:9094,localhost:9095,localhost:9096
+      group-id: group-id
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      #properties:
+       # spring:
+        #  json:
+         #   trusted:
+          #    packages=*:
+    producer:
+      bootstrap-servers: localhost:9094,localhost:9095,localhost:9096
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
